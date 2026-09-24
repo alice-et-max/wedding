@@ -342,7 +342,7 @@ a {
   isolation: isolate;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 2cqw 9cqw;
+  padding: 5cqw 9cqw;
   text-shadow: none;
 }
 
@@ -350,7 +350,7 @@ a {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -3cqw 0;
+  inset: -2cqw 0;
   -webkit-backdrop-filter: blur(2.5px);
   backdrop-filter: blur(2.5px);
   background: rgba(10, 28, 44, 0.04);
@@ -385,7 +385,7 @@ a {
 }
 
 .countdown-unit {
-  margin-top: 1.8cqw;
+  margin-top: 2.4cqw;
   font-size: 2.5cqw;
   font-weight: 400;
   letter-spacing: 0.2em;
