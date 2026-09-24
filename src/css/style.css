@@ -208,8 +208,9 @@ a {
 .hero-image {
   width: 100%;
   height: auto;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 33 / 40; /* recadrage léger : un peu de ciel en haut et l'herbe tout en bas */
   object-fit: cover;
+  object-position: 50% 45%;
 }
 
 /* Voile en dégradé progressif (sans palier visible) : assez sombre en haut pour lire le texte blanc,
@@ -230,7 +231,7 @@ a {
 
 .hero-caption {
   position: absolute;
-  top: 6%;
+  top: 4%;
   left: 0;
   right: 0;
   z-index: 1;

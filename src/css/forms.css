@@ -322,6 +322,65 @@ legend.form-label {
 
 /* Liste de voeux : lignes compactes (vignette + texte), formulaire dans un volet */
 
+/* Volet de la liste : fermé par défaut, un simple bouton fin avec un chevron. */
+.voeux-panel-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 52px;
+  padding: 0 1.5rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+  color: var(--forms-ink);
+  border: 1px solid var(--forms-ink);
+  border-radius: var(--forms-radius);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.voeux-panel-summary::-webkit-details-marker {
+  display: none;
+}
+
+.voeux-panel-summary::after {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: -0.2rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease, margin 0.2s ease;
+}
+
+.voeux-panel-summary:hover,
+.voeux-panel-summary:focus-visible {
+  color: #fff;
+  background: var(--forms-ink);
+  outline: none;
+}
+
+.voeux-panel[open] .voeux-panel-summary::after {
+  margin-top: 0.25rem;
+  transform: rotate(225deg);
+}
+
+.voeux-panel-close,
+.voeux-panel[open] .voeux-panel-open {
+  display: none;
+}
+
+.voeux-panel[open] .voeux-panel-close {
+  display: inline;
+}
+
+.voeux-panel-body {
+  padding-top: var(--space-5, 2.5rem);
+}
+
 .voeux-list {
   display: flex;
   flex-direction: column;

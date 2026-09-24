@@ -9,8 +9,8 @@
 //  - Helper global : window.placeholderHTML(value) -> <span class="placeholder">value</span>
 window.SITE_CONFIG = {
   // Date/heure de la cérémonie, ISO 8601 avec fuseau. null => placeholder "[DATE DU MARIAGE]".
-  // Le 1er mai 2027 ; l'heure n'est pas encore connue, le décompte vise donc minuit (heure de Zurich).
-  WEDDING_DATE: "2027-05-01T00:00:00+02:00",
+  // Le 1er mai 2027 à 13h (heure de Zurich) : début de la cérémonie.
+  WEDDING_DATE: "2027-05-01T13:00:00+02:00",
   WEDDING_DATE_LABEL: "1er mai 2027",
   VENUE: "[LIEU DU MARIAGE]",
 

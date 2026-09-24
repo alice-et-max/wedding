@@ -411,8 +411,13 @@
       cardControllers.push(controller);
       list.appendChild(controller.element);
     });
-    root.appendChild(list);
-    root.appendChild(createPaymentBlock());
+    const openLabel = el("span", { className: "voeux-panel-open", text: "Voir la liste de voeux" });
+    const closeLabel = el("span", { className: "voeux-panel-close", text: "Masquer la liste" });
+    // Liste et coordonnées de paiement dans un volet fermé par défaut.
+    root.appendChild(el("details", { className: "voeux-panel" }, [
+      el("summary", { className: "voeux-panel-summary" }, [openLabel, closeLabel]),
+      el("div", { className: "voeux-panel-body" }, [list, createPaymentBlock()]),
+    ]));
 
     await loadTotals(items);
     areTotalsLoading = false;
