@@ -32,6 +32,12 @@
   margin: 0;
 }
 
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
 .form-field,
 .form-group {
   display: flex;

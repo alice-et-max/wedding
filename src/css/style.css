@@ -4,11 +4,11 @@
 
 :root {
   --white: #ffffff; /* blanc pur : uniquement pour le texte sur la photo */
-  --paper: #fbfefe; /* blanc cassé, à peine turquoise */
-  --mist: #eaf8fa; /* turquoise du lac très dilué */
-  --lake: #4cc3d6; /* turquoise du lac (photo : ~#44afc0 à #2ec4e0) : filets, jauges */
+  --paper: #fafcfe; /* blanc cassé, à peine bleuté */
+  --mist: #e9f3fa; /* bleu clair du lac très dilué */
+  --lake: #5ab4e2; /* bleu clair du lac : filets, jauges */
   --ink: #26343e;
-  --blue: #1d7f95; /* turquoise assombri pour rester lisible en petit texte (contraste ≈ 4,5) */
+  --blue: #2878a6; /* bleu assombri pour rester lisible en petit texte */
 
   --bg: var(--paper);
   --muted: #58666f;
@@ -25,7 +25,7 @@
   --space-3: 1rem;
   --space-4: 1.5rem;
   --space-5: 2.5rem;
-  --space-6: 4.5rem;
+  --space-6: 3.6rem;
   --radius: 14px;
   --column-width: 30rem;
 }
@@ -182,7 +182,7 @@ a {
 .placeholder {
   display: inline;
   padding: 0 0.3em;
-  background: rgba(29, 127, 149, 0.09);
+  background: rgba(40, 120, 166, 0.09);
   outline: 1px dashed var(--blue);
   outline-offset: 2px;
   text-decoration: none;
@@ -205,12 +205,19 @@ a {
   clip-path: inset(0 -100vmax);
 }
 
+/* Au chargement, seul le hero est visible (hauteur de l'écran) ; la photo est recadrée sur les côtés, centrée sur les mains. */
+.hero {
+  height: 100vh;
+  height: 100svh;
+  min-height: 32rem;
+  max-height: 60rem;
+}
+
 .hero-image {
   width: 100%;
-  height: auto;
-  aspect-ratio: 33 / 40; /* recadrage léger : un peu de ciel en haut et l'herbe tout en bas */
+  height: 100%;
   object-fit: cover;
-  object-position: 50% 45%;
+  object-position: 56% 55%;
 }
 
 /* Voile en dégradé progressif (sans palier visible) : assez sombre en haut pour lire le texte blanc,
@@ -231,7 +238,7 @@ a {
 
 .hero-caption {
   position: absolute;
-  top: 4%;
+  top: 7%;
   left: 0;
   right: 0;
   z-index: 1;
@@ -288,6 +295,38 @@ a {
   padding: 0 0.5em;
   font-style: normal;
   color: rgba(255, 255, 255, 0.85);
+}
+
+/* Discrète flèche vers le bas, en bas du hero. */
+.hero-scroll {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: 1.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-left: -1.375rem;
+  opacity: 0.85;
+  animation: hero-scroll-nudge 2.4s ease-in-out infinite;
+}
+
+.hero-scroll::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin: -0.55rem 0 0 -0.4rem;
+  border-right: 1px solid var(--white);
+  border-bottom: 1px solid var(--white);
+  transform: rotate(45deg);
+  filter: drop-shadow(0 1px 4px rgba(8, 24, 38, 0.5));
+}
+
+@keyframes hero-scroll-nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
 }
 
 /* ---------- Compte à rebours (dans le hero, sous la date) ---------- */
@@ -552,6 +591,10 @@ a {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .hero-scroll {
+    animation: none;
   }
 
   *,

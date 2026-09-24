@@ -213,8 +213,7 @@
 
   const form = el("form", { className: "form", novalidate: true }, [
     honeypot,
-    lastNameField.root,
-    firstNameField.root,
+    el("div", { className: "form-row" }, [lastNameField.root, firstNameField.root]),
     emailField.root,
     presenceGroup.root,
     personsField.root,
