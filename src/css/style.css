@@ -1,0 +1,572 @@
+/* Direction visuelle : fidèle au faire-part « save the date » (assets/save_the_date.jpeg).
+   Blanc cassé + bleu très clair, encre ardoise, fins filets blancs sur la photo, titres en Cormorant Garamond Light,
+   étiquettes en Montserrat Light très espacé. La photo est montrée en entier (non recadrée). */
+
+:root {
+  --white: #ffffff; /* blanc pur : uniquement pour le texte sur la photo */
+  --paper: #fbfefe; /* blanc cassé, à peine turquoise */
+  --mist: #eaf8fa; /* turquoise du lac très dilué */
+  --lake: #4cc3d6; /* turquoise du lac (photo : ~#44afc0 à #2ec4e0) : filets, jauges */
+  --ink: #26343e;
+  --blue: #1d7f95; /* turquoise assombri pour rester lisible en petit texte (contraste ≈ 4,5) */
+
+  --bg: var(--paper);
+  --muted: #58666f;
+  --accent: var(--blue);
+  --line: rgba(38, 52, 62, 0.14);
+  --sand: var(--mist);
+
+  --font-serif: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --font-serif-text: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4.5rem;
+  --radius: 14px;
+  --column-width: 30rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.96875rem;
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-3);
+  top: -4rem;
+  z-index: 10;
+  padding: var(--space-2) var(--space-3);
+  background: var(--ink);
+  color: var(--white);
+  font-size: 0.85rem;
+}
+
+.skip-link:focus {
+  top: var(--space-3);
+}
+
+/* ---------- Typographie ---------- */
+
+.label,
+.section-label {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* Étiquette de section centrée, suivie d'un court filet bleu (écho du faire-part). */
+.section-label {
+  text-align: center;
+  margin-bottom: var(--space-4);
+}
+
+.section-label::after {
+  content: "";
+  display: block;
+  width: 2.75rem;
+  height: 1px;
+  margin: var(--space-3) auto 0;
+  background: var(--lake);
+  opacity: 0.8;
+}
+
+.section-title {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 10.4vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--ink);
+}
+
+.section-intro {
+  margin: 0 0 var(--space-5);
+  text-align: center;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+.lead {
+  margin: 0;
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.03rem;
+}
+
+/* ---------- Structure ---------- */
+
+.section {
+  width: 100%;
+  max-width: var(--column-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+}
+
+/* Bande pleine largeur au fond bleu clair, aux bords nets. */
+.band {
+  position: relative;
+  isolation: isolate;
+}
+
+.band::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: var(--bg);
+}
+
+.band--mist {
+  --bg: var(--mist);
+  --sand: var(--paper);
+}
+
+.rule {
+  display: none;
+}
+
+/* ---------- Placeholders ---------- */
+
+.placeholder {
+  display: inline;
+  padding: 0 0.3em;
+  background: rgba(29, 127, 149, 0.09);
+  outline: 1px dashed var(--blue);
+  outline-offset: 2px;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Hero : photo entière + texte par-dessus, comme le faire-part ---------- */
+
+.hero {
+  position: relative;
+  width: 100%;
+  max-width: 36rem;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--mist);
+  color: var(--white);
+  container-type: inline-size;
+  /* Fond bleu clair pleine largeur autour de la photo (écrans larges) */
+  box-shadow: 0 0 0 100vmax var(--mist);
+  clip-path: inset(0 -100vmax);
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+/* Voile en dégradé progressif (sans palier visible) : assez sombre en haut pour lire le texte blanc,
+   totalement transparent avant les mains. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 28, 44, 0.2) 0%,
+    rgba(10, 28, 44, 0.16) 24%,
+    rgba(10, 28, 44, 0.08) 42%,
+    rgba(10, 28, 44, 0) 58%
+  );
+  pointer-events: none;
+}
+
+.hero-caption {
+  position: absolute;
+  top: 6%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 0 4%;
+  text-align: center;
+  text-shadow: 0 1px 12px rgba(8, 24, 38, 0.4);
+}
+
+.hero-kicker {
+  margin: 0 0 3cqw;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 3cqw;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  margin: 0 0 3.8cqw;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 13.4cqw;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.hero-amp {
+  padding: 0 0.04em;
+}
+
+.hero-rule {
+  display: block;
+  width: 14cqw;
+  height: 1px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: none;
+}
+
+.hero-date {
+  margin: 3.6cqw 0 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 8cqw;
+  line-height: 1;
+  letter-spacing: 0.13em;
+  font-variant-numeric: lining-nums;
+  text-indent: 0.13em;
+}
+
+.hero-date i {
+  padding: 0 0.5em;
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- Compte à rebours (dans le hero, sous la date) ---------- */
+
+/* Bande de flou douce, pleine largeur de la photo, sans cadre : seul le flou (aux bords estompés) la distingue. */
+.hero-countdown {
+  min-height: 19cqw;
+  margin: 5.5cqw -4cqw 0;
+}
+
+.countdown-grid {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 2cqw 9cqw;
+  text-shadow: none;
+}
+
+.countdown-grid::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -3cqw 0;
+  -webkit-backdrop-filter: blur(2.5px);
+  backdrop-filter: blur(2.5px);
+  background: rgba(10, 28, 44, 0.04);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 32%, #000 68%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 32%, #000 68%, transparent);
+}
+
+.countdown-cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.countdown-cell + .countdown-cell::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6%;
+  height: 78%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.countdown-value {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 7.6cqw;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.countdown-unit {
+  margin-top: 1.8cqw;
+  font-size: 2.5cqw;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+  text-transform: uppercase;
+}
+
+.countdown-headline {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 6cqw;
+  line-height: 1.1;
+}
+
+.countdown-note {
+  margin: 1cqw 0 0;
+  font-size: 2.8cqw;
+  letter-spacing: 0.1em;
+}
+
+/* ---------- Présentation ---------- */
+
+#presentation {
+  padding-top: var(--space-5);
+}
+
+/* ---------- Verset ---------- */
+
+#verset {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+  text-align: center;
+}
+
+.verse {
+  margin: 0;
+}
+
+.verse blockquote {
+  margin: 0 0 var(--space-4);
+}
+
+.verse blockquote p {
+  margin: 0;
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 7vw, 1.95rem);
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.verse figcaption {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* ---------- Lieux ---------- */
+
+/* Les deux lieux côte à côte pour gagner de la hauteur. */
+.places {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.place {
+  padding: 0 var(--space-3);
+  text-align: center;
+}
+
+.place + .place {
+  border-left: 1px solid var(--line);
+}
+
+.place:first-child {
+  padding-left: 0;
+}
+
+.place:last-child {
+  padding-right: 0;
+}
+
+/* Vignette en arche, petite et centrée : discrète, et la faible définition des photos ne se voit pas. */
+.place-image {
+  display: block;
+  width: min(100%, 8rem);
+  aspect-ratio: 4 / 5;
+  margin: 0 auto var(--space-3);
+  object-fit: cover;
+  border-radius: 999px 999px 0 0;
+  filter: saturate(0.9);
+}
+
+.place-image--morges {
+  object-position: 50% 25%;
+}
+
+.place-kind {
+  margin: 0 0 var(--space-2);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.place-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.2em;
+  margin: 0 0 var(--space-1);
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 1.55rem;
+  line-height: 1.1;
+}
+
+.place-when {
+  margin: 0;
+  color: var(--muted);
+}
+
+.place-link {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--blue);
+  border-bottom: 1px solid var(--lake);
+  padding-bottom: 2px;
+}
+
+/* ---------- Plan de table & photos ---------- */
+
+.coming-soon {
+  margin: 0 0 var(--space-3);
+  text-align: center;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 2.3rem;
+  line-height: 1.15;
+}
+
+#plan-de-table .section-intro {
+  margin-bottom: var(--space-4);
+}
+
+#photos-root {
+  min-height: 10rem;
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 12rem;
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px dashed rgba(38, 52, 62, 0.25);
+  border-radius: var(--radius);
+  background: var(--paper);
+  text-align: center;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+/* ---------- Pied de page ---------- */
+
+.site-footer {
+  padding: var(--space-6) var(--space-4);
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.footer-names {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 2.5rem;
+  line-height: 1.1;
+}
+
+.footer-contact {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Mouvement réduit ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Écrans plus larges ---------- */
+
+@media (min-width: 640px) {
+  .section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

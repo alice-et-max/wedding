@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alice &amp; Maxime — Mariage</title>
+  <meta name="description" content="Alice et Maxime se marient ! Retrouvez ici toutes les informations, confirmez votre présence et découvrez notre liste de voeux.">
+  <meta name="theme-color" content="#fbfefe">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_CH">
+  <meta property="og:title" content="Alice &amp; Maxime — Mariage">
+  <meta property="og:description" content="Un camp de ski, un message, 17 mois, nous y voilà ! Rejoignez-nous pour célébrer notre mariage.">
+  <meta property="og:url" content="https://alice-et-max.github.io/wedding/">
+  <meta property="og:image" content="https://alice-et-max.github.io/wedding/assets/main_pic_web.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+</head>
+<body>
+  <a class="skip-link" href="#presentation">Aller au contenu</a>
+
+  <header id="hero" class="hero">
+    <img
+      class="hero-image"
+      src="assets/main_pic_web.jpg"
+      width="1000"
+      height="1333"
+      fetchpriority="high"
+      alt="Deux mains entrelacées, avec une bague de fiançailles, devant un lac turquoise entouré de montagnes.">
+    <div class="hero-caption">
+      <p class="hero-kicker">Nous nous marions</p>
+      <h1 class="hero-title">Alice <span class="hero-amp">&amp;</span> Maxime</h1>
+      <span class="hero-rule" aria-hidden="true"></span>
+      <p class="hero-date"><time datetime="2027-05-01"><span>01</span><i aria-hidden="true">·</i><span>05</span><i aria-hidden="true">·</i><span>2027</span></time></p>
+      <div id="countdown-root" class="hero-countdown"></div>
+    </div>
+  </header>
+
+  <main>
+    <section id="presentation" class="section" aria-labelledby="presentation-title">
+      <p class="section-label">01 — Notre histoire</p>
+      <h2 class="section-title" id="presentation-title">Un camp de ski, un message, 17 mois, nous y voilà !</h2>
+      <p class="lead">C’est dans les Alpes valaisannes que tout a commencé, dans l’Oberland bernois que nous nous sommes engagés, et c’est prochainement avec vous que nous voulons l’officialiser !</p>
+    </section>
+
+    <section id="verset" class="section band band--mist" aria-label="Verset">
+      <figure class="verse">
+        <blockquote>
+          <p>« Les bontés de l'Eternel ne sont pas épuisées, ses compassions ne prennent pas fin; elles se renouvellent chaque matin. Que ta fidélité est grande!»</p>
+        </blockquote>
+        <figcaption>Lamentations 3:22-23.</figcaption>
+      </figure>
+    </section>
+
+    <section id="lieux" class="section" aria-label="Lieux">
+      <p class="section-label">02 — Lieux</p>
+      <ol class="places">
+        <li class="place">
+          <img class="place-image place-image--morges" src="assets/morges_web.jpg" width="301" height="349" loading="lazy" alt="Le temple de Morges et son clocher, sous un ciel bleu.">
+          <p class="place-kind">La cérémonie</p>
+          <h3 class="place-name">Temple de Morges</h3>
+          <p class="place-when">À 13h</p>
+          <a class="place-link" href="https://www.google.com/maps/search/?api=1&amp;query=Temple+de+Morges" target="_blank" rel="noopener">Voir la carte</a>
+        </li>
+        <li class="place">
+          <img class="place-image place-image--sarraz" src="assets/sarraz_web.jpg" width="640" height="800" loading="lazy" alt="Le château de La Sarraz : deux tours blanches à toits pointus et un jardin de buis.">
+          <p class="place-kind">Le vin d’honneur</p>
+          <h3 class="place-name">Château de La Sarraz</h3>
+          <p class="place-when">Dès 16h</p>
+          <a class="place-link" href="https://www.google.com/maps/search/?api=1&amp;query=Ch%C3%A2teau+de+La+Sarraz" target="_blank" rel="noopener">Voir la carte</a>
+        </li>
+      </ol>
+    </section>
+
+    <section id="rsvp" class="section band band--mist" aria-labelledby="rsvp-title">
+      <p class="section-label">03 — Présence</p>
+      <h2 class="section-title" id="rsvp-title">Confirmer votre présence</h2>
+      <p class="section-intro">Merci de confirmer votre présence avant le <strong data-config="RSVP_DEADLINE_LABEL">1er mars 2027</strong>.</p>
+      <div id="rsvp-root"></div>
+    </section>
+
+    <section id="voeux" class="section" aria-labelledby="voeux-title">
+      <p class="section-label">04 — Voeux</p>
+      <h2 class="section-title" id="voeux-title">Liste de voeux</h2>
+      <p class="section-intro">Votre présence est notre plus beau cadeau. Si vous souhaitez toutefois nous gâter, vous pouvez participer à l’un des projets ci-dessous, du montant de votre choix.</p>
+      <div id="voeux-root"></div>
+    </section>
+
+    <!-- Masquée pour l'instant : retirer l'attribut « hidden » pour la réafficher. -->
+    <section id="plan-de-table" class="section band band--mist" hidden aria-labelledby="plan-title">
+      <p class="section-label">05 — Plan de table</p>
+      <h2 class="section-title" id="plan-title">Plan de table</h2>
+      <div id="plan-root">
+        <p class="section-intro">Cette section est réservée aux invités du dîner.</p>
+      </div>
+    </section>
+
+    <!-- Masquée pour l'instant : retirer l'attribut « hidden » pour la réafficher. -->
+    <section id="photos" class="section" hidden aria-labelledby="photos-title">
+      <p class="section-label">06 — Souvenirs</p>
+      <h2 class="section-title" id="photos-title">Photos du mariage</h2>
+      <div id="photos-root">
+        <p class="empty-state">Les photos seront ajoutées après le mariage</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-names">Alice &amp; Maxime</p>
+    <p class="label">Une question ? Contactez-nous</p>
+    <p class="footer-contact" data-config="CONTACT">[CONTACT : EMAIL / TÉLÉPHONE]</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="js/gate.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/countdown.js" defer></script>
+  <script src="js/rsvp.js" defer></script>
+  <script src="js/voeux.js" defer></script>
+  <script src="js/plan.js" defer></script>
+</body>
+</html>

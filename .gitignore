@@ -1,0 +1,9 @@
+_site/
+.venv/
+.DS_Store
+__pycache__/
+.idea/
+
+# Photos d'origine en haute définition : le site utilise les versions *_web.jpg
+assets/sarraz.png
+assets/morges.png

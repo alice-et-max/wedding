@@ -1,0 +1,491 @@
+/* Formulaires (RSVP + liste de voeux). Dépend des variables de style.css, avec valeurs de repli. */
+
+#rsvp-root,
+#voeux-root,
+#plan-root {
+  --forms-accent: var(--accent, #3FB6C9);
+  --forms-ink: var(--ink, #3B4650);
+  --forms-muted: var(--muted, #6B7680);
+  --forms-line: var(--line, #D9D5CC);
+  --forms-sand: var(--sand, #F6F2EA);
+  --forms-bg: var(--bg, #FFFFFF);
+  --forms-serif: var(--font-serif, "Instrument Serif", Georgia, serif);
+  --forms-sans: var(--font-sans, "Manrope", system-ui, sans-serif);
+  --forms-error: #B3372F;
+  --forms-success: #2E7D5B;
+  --forms-radius: 999px;
+  --forms-card-radius: var(--radius, 14px);
+  font-family: var(--forms-sans);
+  color: var(--forms-ink);
+}
+
+#rsvp-root [hidden],
+#voeux-root [hidden],
+#plan-root [hidden] {
+  display: none !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  margin: 0;
+}
+
+.form-field,
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 0.5rem);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.form-label {
+  padding: 0;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--forms-muted);
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="number"],
+.form input[type="password"],
+.form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.7rem 0;
+  font: inherit;
+  font-size: 1.0625rem;
+  color: var(--forms-ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(38, 52, 62, 0.35);
+  border-radius: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.form input:focus,
+.form textarea:focus {
+  outline: none;
+  border-bottom-color: var(--forms-accent);
+  box-shadow: 0 1px 0 0 var(--forms-accent);
+}
+
+.form input[aria-invalid="true"],
+.form textarea[aria-invalid="true"] {
+  border-bottom-color: var(--forms-error);
+}
+
+.form-choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 0.5rem);
+}
+
+.form-choice {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding: 0 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  border: 1px solid var(--forms-line);
+  border-radius: var(--forms-card-radius);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-choice:has(input:checked) {
+  border-color: var(--forms-accent);
+  background: transparent;
+}
+
+.form-choice input {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  accent-color: var(--forms-accent);
+}
+
+/* Question oui / non : deux boutons compacts côte à côte (la pastille radio est masquée, l'état se voit au cadre). */
+.form-group {
+  gap: 0.9rem;
+}
+
+/* Dans un fieldset, le gap du flex ne s'applique pas à la légende. */
+legend.form-label {
+  margin-bottom: 0.9rem;
+}
+
+.form-choices {
+  flex-direction: row;
+  gap: 0.75rem;
+}
+
+.form-choices .form-choice {
+  position: relative;
+  flex: 1;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1rem;
+}
+
+.form-choices .form-choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-choices .form-choice:has(input:focus-visible) {
+  outline: 2px solid var(--forms-accent);
+  outline-offset: 2px;
+}
+
+.form-choices .form-choice:has(input:checked) {
+  color: var(--forms-accent);
+}
+
+.form-inline {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2, 0.75rem);
+}
+
+.form-inline input {
+  flex: 1;
+}
+
+.form-button {
+  box-sizing: border-box;
+  min-height: 52px;
+  padding: 0.75rem 1.75rem;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--forms-ink);
+  background: transparent;
+  border: 1px solid var(--forms-ink);
+  border-radius: var(--forms-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.form > .form-button {
+  width: 100%;
+}
+
+.form-button:hover:not(:disabled),
+.form-button:focus-visible {
+  background: var(--forms-ink);
+  border-color: var(--forms-ink);
+  color: #fff;
+  outline: none;
+}
+
+
+.form-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-button--ghost {
+  color: var(--forms-ink);
+  background: transparent;
+  border-color: var(--forms-line);
+}
+
+.form-button--ghost:hover:not(:disabled),
+.form-button--ghost:focus-visible {
+  color: var(--forms-ink);
+  background: transparent;
+  border-color: var(--forms-accent);
+}
+
+.form-button--small {
+  min-height: 40px;
+  padding: 0.4rem 1rem;
+  font-size: 0.7rem;
+}
+
+.form-error,
+.form-hint,
+.form-status,
+.form-notice {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.form-error {
+  color: var(--forms-error);
+}
+
+.form-hint {
+  color: var(--forms-muted);
+}
+
+.form-hint--error {
+  color: var(--forms-error);
+}
+
+.form-hint--success {
+  color: var(--forms-success);
+}
+
+.form-status--error {
+  color: var(--forms-error);
+}
+
+.form-status--success {
+  padding: var(--space-3, 1rem);
+  color: var(--forms-ink);
+  background: var(--forms-sand);
+  border-left: 2px solid var(--forms-success);
+}
+
+.form-status--success a {
+  color: var(--forms-ink);
+  text-underline-offset: 3px;
+}
+
+.form-notice {
+  margin-bottom: var(--space-4, 1.5rem);
+  color: var(--forms-muted);
+  text-align: center;
+}
+
+.form-notice--late {
+  padding: var(--space-3, 1rem);
+  color: var(--forms-ink);
+  background: var(--forms-sand);
+  border-left: 2px solid var(--forms-error);
+  text-align: left;
+}
+
+.form-banner {
+  margin: 0 0 var(--space-4, 1.5rem);
+  padding: var(--space-2, 0.75rem) var(--space-3, 1rem);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--forms-ink);
+  background: var(--forms-sand);
+  border: 1px dashed var(--forms-accent);
+  border-radius: var(--forms-card-radius);
+  text-align: center;
+}
+
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-success {
+  padding: var(--space-5, 2rem) var(--space-3, 1rem);
+  text-align: center;
+  background: var(--forms-sand);
+  border-radius: var(--forms-card-radius);
+}
+
+.form-success-title {
+  margin: 0 0 var(--space-2, 0.75rem);
+  font-family: var(--forms-serif);
+  font-size: 2.6rem;
+  line-height: 1.05;
+  font-weight: 300;
+}
+
+.form-success-text {
+  margin: 0 0 var(--space-4, 1.5rem);
+  line-height: 1.6;
+}
+
+/* Liste de voeux : lignes compactes (vignette + texte), formulaire dans un volet */
+
+.voeux-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.voeu-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4, 1.5rem) 0;
+  border-top: 1px solid var(--forms-line);
+}
+
+.voeu-card:last-child {
+  border-bottom: 1px solid var(--forms-line);
+}
+
+.voeu-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.voeu-title {
+  margin: 0;
+  font-family: var(--forms-serif);
+  font-size: 1.85rem;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.voeu-description {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--forms-muted);
+}
+
+.voeu-price {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--forms-muted);
+}
+
+.voeu-progress {
+  height: 2px;
+  margin-top: 0.4rem;
+  border-radius: 1px;
+  overflow: hidden;
+  background: rgba(38, 52, 62, 0.12);
+}
+
+.voeu-progress-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 2px;
+  background: var(--lake, var(--forms-accent));
+  transition: width 0.4s ease;
+}
+
+.voeu-remaining {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.voeu-remaining--complete {
+  color: var(--forms-success);
+}
+
+.voeu-card--complete .voeu-body {
+  opacity: 0.6;
+}
+
+.voeu-details {
+  margin-top: var(--space-3, 1rem);
+}
+
+.voeu-summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1rem;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+  border: 1px solid var(--forms-line);
+  border-radius: var(--forms-radius);
+}
+
+.voeu-summary::-webkit-details-marker {
+  display: none;
+}
+
+.voeu-summary::after {
+  content: "+";
+  margin-left: auto;
+  font-size: 1.25rem;
+  color: var(--forms-accent);
+}
+
+.voeu-details[open] .voeu-summary::after {
+  content: "\2212";
+}
+
+.voeu-form {
+  padding-top: var(--space-3, 1rem);
+}
+
+/* Bloc de paiement */
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 1rem);
+  margin-top: var(--space-5, 2.5rem);
+  padding: var(--space-4, 1.5rem) var(--space-3, 1rem);
+  background: var(--forms-sand);
+  border-radius: var(--forms-card-radius);
+}
+
+.payment-title {
+  margin: 0;
+  font-family: var(--forms-serif);
+  font-size: 2.1rem;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.payment-intro {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--forms-muted);
+}
+
+.payment-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2, 0.75rem);
+  padding-top: var(--space-3, 1rem);
+  border-top: 1px solid var(--forms-line);
+}
+
+.payment-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.payment-value {
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.payment-row .form-button {
+  flex: none;
+}

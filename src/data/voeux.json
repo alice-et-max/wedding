@@ -1,0 +1,38 @@
+[
+  {
+    "id": "exemple-diner-romantique",
+    "title": "[EXEMPLE] Dîner romantique",
+    "description": "Un dîner à deux pendant notre voyage. [EXEMPLE À REMPLACER]",
+    "price": 120
+  },
+  {
+    "id": "exemple-nuit-en-cabane",
+    "title": "[EXEMPLE] Nuit en cabane de montagne",
+    "description": "Une nuit sous les étoiles, dans les Alpes. [EXEMPLE À REMPLACER]",
+    "price": 250
+  },
+  {
+    "id": "exemple-cours-de-cuisine",
+    "title": "[EXEMPLE] Cours de cuisine",
+    "description": "Apprendre à cuisiner ensemble. [EXEMPLE À REMPLACER]",
+    "price": 80
+  },
+  {
+    "id": "exemple-vols-lune-de-miel",
+    "title": "[EXEMPLE] Vols pour la lune de miel",
+    "description": "Une contribution aux billets d'avion. [EXEMPLE À REMPLACER]",
+    "price": 400
+  },
+  {
+    "id": "exemple-pique-nique-au-lac",
+    "title": "[EXEMPLE] Pique-nique au bord du lac",
+    "description": "Un panier gourmand et une belle vue. [EXEMPLE À REMPLACER]",
+    "price": 60
+  },
+  {
+    "id": "exemple-journee-ski",
+    "title": "[EXEMPLE] Journée de ski à deux",
+    "description": "Forfaits et chocolat chaud. [EXEMPLE À REMPLACER]",
+    "price": 150
+  }
+]
